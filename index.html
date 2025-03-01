@@ -28,6 +28,9 @@
         min-height: 100vh;
       }
 
+      .nav-toggle {
+        display: none;
+      }
       /* BACKGROUND IMAGE OVERLAY */
       body::before {
         content: "";
@@ -262,40 +265,113 @@
       }
 
       /* RESPONSIVE TWEAKS */
+      /* Responsive Tweaks */
       @media (max-width: 992px) {
         .cards-container {
-          height: 500px; /* more room for cards on smaller screens */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: auto;
+        }
+        .nav-toggle {
+          display: none; /* Hide by default */
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
         }
         .service-card {
-          width: 220px;
+          position: relative;
+          width: 90%;
+          margin-bottom: 1rem;
         }
-        .service-card.top-left {
-          left: 10%;
+
+        /* Reduce text size */
+        .hero h1 {
+          font-size: 2rem;
         }
-        .service-card.top-right {
-          right: 10%;
-        }
-        .service-card.bottom-left {
-          left: 10%;
-        }
-        .service-card.bottom-right {
-          right: 10%;
+        .hero h2 {
+          font-size: 1.2rem;
         }
       }
-      @media (max-width: 600px) {
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+          padding: 1rem;
+        }
+
+        /* Mobile navigation menu */
+        nav ul {
+          flex-direction: column;
+          display: none; /* Hide menu initially */
+          background: rgba(10, 14, 26, 0.9);
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 60px;
+          text-align: center;
+        }
+
+        nav ul.show {
+          display: flex;
+        }
+
         .portrait-container img {
           width: 140px;
           height: 140px;
         }
-        .service-card {
-          width: 200px;
-          padding: 1rem;
+
+        .hero button.cta {
+          padding: 0.6rem 1.5rem;
+          font-size: 0.9rem;
         }
+      }
+
+      @media (max-width: 480px) {
         .hero h1 {
           font-size: 1.8rem;
         }
         .hero h2 {
           font-size: 1rem;
+        }
+
+        .portrait-container img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .service-card {
+          width: 100%;
+
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-toggle {
+          display: block; /* Show hamburger only on mobile */
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+
+        nav ul {
+          display: none; /* Hide menu initially */
+          flex-direction: column;
+          background: rgba(10, 14, 26, 0.9);
+          width: 100%;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          text-align: center;
+        }
+
+        nav ul.show {
+          display: flex;
         }
       }
     </style>
@@ -309,6 +385,7 @@
         Jonathan <span style="color: #00d4ff">Ayodele</span>
       </div>
       <nav>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -377,6 +454,9 @@
     <script>
       function openContact() {
         alert("Contact form or details would go here!");
+      }
+      function toggleMenu() {
+        document.querySelector("nav ul").classList.toggle("show");
       }
     </script>
   </body>
