@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jonathan Ayodele - Cybersecurity Expert</title>
+
+    <!-- Google Fonts (example) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* RESET & BASE STYLES */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: #0a0e1a; /* Fallback dark background */
+        color: #fff;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* BACKGROUND IMAGE OVERLAY */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Replace "bg.jpg" with your actual background image file */
+        background: url("bg.png") center/cover no-repeat;
+        opacity: 0.15; /* Adjust opacity to show background more or less */
+        z-index: -1;
+      }
+
+      /********************
+     * HEADER & NAVBAR *
+     ********************/
+      header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: rgba(10, 14, 26, 0.4);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .logo img {
+        width: 40px;
+        margin-right: 0.5rem;
+      }
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 400;
+        transition: color 0.3s ease;
+      }
+      nav ul li a:hover {
+        color: #00d4ff;
+      }
+      .talk-btn {
+        padding: 0.6rem 1.2rem;
+        border: 2px solid #00d4ff;
+        background: transparent;
+        color: #00d4ff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+      }
+      .talk-btn:hover {
+        background: #00d4ff;
+        color: #0a0e1a;
+      }
+
+      /*****************
+     * HERO SECTION *
+     *****************/
+      .hero {
+        position: relative;
+        padding: 3rem 2rem 4rem; /* extra bottom padding for text */
+        text-align: center;
+      }
+      .hero-content {
+        /* container to hold portrait, cards, and hero text */
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        /* min-height gives space for the portrait + cards above/below */
+        min-height: 600px;
+      }
+
+      /* Service Cards + Portrait Container (positioned around the center) */
+      .cards-container {
+        position: relative;
+        width: 100%;
+        height: 380px; /* Enough height to place cards above/below portrait */
+        margin: 0 auto 2rem; /* spacing below the cluster */
+      }
+
+      /* Portrait in the absolute center */
+      .portrait-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2; /* Ensure it's above the cards */
+      }
+      .portrait-container img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        position: relative;
+      }
+      /* Glow effect around the image */
+      .portrait-container::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(rgba(0, 212, 255, 0.4), transparent 60%);
+        z-index: -1;
+        animation: glowPulse 3s infinite ease-in-out;
+      }
+      @keyframes glowPulse {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* SERVICE CARDS - Glassmorphism style */
+      .service-card {
+        position: absolute; /* so we can place them around the portrait */
+        width: 280px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+      .service-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #00d4ff;
+      }
+      .service-card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      /* Position each card around the center (adjust these for perfect placement) */
+      /* Top-Left Card */
+      .service-card.top-left {
+        top: 5%;
+        left: 20%;
+      }
+      /* Top-Right Card */
+      .service-card.top-right {
+        top: 5%;
+        right: 20%;
+      }
+      /* Bottom-Left Card */
+      .service-card.bottom-left {
+        bottom: 5%;
+        left: 20%;
+      }
+      /* Bottom-Right Card */
+      .service-card.bottom-right {
+        bottom: 5%;
+        right: 20%;
+      }
+
+      /* HEADINGS BELOW THE CARDS/IMAGE */
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+      .hero h2 {
+        font-size: 1.4rem;
+        font-weight: 200;
+        margin-bottom: 2rem;
+      }
+      .hero button.cta {
+        padding: 0.8rem 2rem;
+        background: #00d4ff;
+        color: #0a0e1a;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        font-weight: 600;
+      }
+      .hero button.cta:hover {
+        background: #00a8c2;
+      }
+      span {
+        font-weight: 500;
+      }
+      /***************
+     *   FOOTER    *
+     ***************/
+      footer {
+        text-align: center;
+        padding: 1.5rem 2rem;
+        background: #0a0e1a;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      footer p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* RESPONSIVE TWEAKS */
+      @media (max-width: 992px) {
+        .cards-container {
+          height: 500px; /* more room for cards on smaller screens */
+        }
+        .service-card {
+          width: 220px;
+        }
+        .service-card.top-left {
+          left: 10%;
+        }
+        .service-card.top-right {
+          right: 10%;
+        }
+        .service-card.bottom-left {
+          left: 10%;
+        }
+        .service-card.bottom-right {
+          right: 10%;
+        }
+      }
+      @media (max-width: 600px) {
+        .portrait-container img {
+          width: 140px;
+          height: 140px;
+        }
+        .service-card {
+          width: 200px;
+          padding: 1rem;
+        }
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+        .hero h2 {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER / NAVBAR -->
+    <header>
+      <div class="logo">
+        <!-- Optional logo image -->
+        <!-- <img src="logo.png" alt="Logo"> -->
+        Jonathan <span style="color: #00d4ff">Ayodele</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#awards">Awards</a></li>
+        </ul>
+      </nav>
+      <button class="talk-btn" onclick="openContact()">Let’s Talk</button>
+    </header>
+
+    <!-- HERO + SERVICE CARDS -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <!-- Container holding portrait + 4 cards around it -->
+        <div class="cards-container">
+          <div class="service-card top-left">
+            <h3><i>🔐</i> Identity Theft</h3>
+            <p>
+              Detect and mitigate risks of stolen credentials, phishing attacks,
+              and more.
+            </p>
+          </div>
+          <div class="service-card top-right">
+            <h3><i>🗄️</i> Database Security</h3>
+            <p>
+              Safeguard critical data from breaches, unauthorized access, and
+              data corruption.
+            </p>
+          </div>
+          <div class="service-card bottom-left">
+            <h3><i>🌐</i> Web Security</h3>
+            <p>
+              Secure web applications against vulnerabilities (SQL injection,
+              XSS, etc.).
+            </p>
+          </div>
+          <div class="service-card bottom-right">
+            <h3><i>🔒</i> Network Security</h3>
+            <p>
+              Strengthen network defenses, robust firewalls, encryption, and
+              intrusion detection.
+            </p>
+          </div>
+
+          <!-- Center Portrait -->
+          <div class="portrait-container">
+            <!-- Replace with your actual portrait image -->
+            <img src="profile.png" alt="Jonathan Ayodele" />
+          </div>
+        </div>
+
+        <!-- Headings & CTA below the cards/image -->
+        <h1>Protecting Data, Networks & Identities</h1>
+        <h2>I’m <span>Jonathan Ayodele</span>, a Cybersecurity Expert</h2>
+        <button class="cta">View Portfolio</button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 - All rights reserved. Designed by Jonathan Ayodele</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      function openContact() {
+        alert("Contact form or details would go here!");
+      }
+    </script>
+  </body>
+</html>
